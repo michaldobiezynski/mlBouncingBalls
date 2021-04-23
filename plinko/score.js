@@ -21,8 +21,17 @@ function distance(point) {
 
 function runAnalysis() {
   // Write code here to analyze stuff
-  _.chain(outputs)
+  let stuff = _.chain(outputs)
     .map((row) => [distance(row[0]), row[3]])
     .sortBy((row) => row[0])
-    .slice(0, k);
+    .slice(0, k)
+    .countBy((row) => row[1])
+    .toPairs()
+    .sortBy((row) => row[1])
+    .last()
+    .first()
+    .parseInt()
+    .value();
+
+  console.log(stuff);
 }
